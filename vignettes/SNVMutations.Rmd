@@ -1,0 +1,73 @@
+---
+title: "SNVMutations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SNVMutations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(SNVMutations)
+```
+
+# Introduction 
+
+this package provides tools extract, count and visualize the SNV stored in a .vcf file in the context of the genome. Only single nucleotide mutations with only one alt will be considered.
+
+# Extraacting SNV Mutation types
+
+To extract the vector of SNVs the user has to provide the name of the .vcf file of interest, the reference genome as a string specifying the name of a NCBI assembly (e.g. "GRCh38") or UCSC genome (e.g. "hg19") and a length of interest. The length provided will be the length of the reference genome with the mutation -  format [REF>ALT] - in the middle.
+
+It is important to notice that:
+- if the context_length provided id even the upstream side will be 1 base longer
+- given that C[G>A]A” is the same as “T[C>T]G” on the reverse strand, the redundancy is addressed such that the REF is always T or C
+
+## Usage: 
+
+provide a .vcf file and the reference genome
+```{r}
+library(VariantAnnotation)
+vcf_file <- vcf_file <- system.file("extdata", "gl_chr1.vcf", package="VariantAnnotation")
+reference_genome <-  "hg19"
+```
+
+run the command with the length of interest 
+```{r}
+library("BSgenome")
+library("GenomicRanges")
+MutationType(vcf_file,reference_genome,3)
+```
+
+# Counting SNV Mutation types
+
+To obtain the count table of SNVs the user has to provide the name of the .vcf file of interest, the reference genome as a string specifying the name of a NCBI assembly (e.g. "GRCh38") or UCSC genome (e.g. "hg19") and has the option to ask for the graphication of the count table.
+
+It is important to notice that:
+- given that [G>A]” is the same as “[C>T]” on the reverse strand, the redundancy is addressed such that the REF is always T or C
+
+## Usage: 
+
+provide a .vcf file and the reference genome
+```{r}
+library(VariantAnnotation)
+vcf_file <- vcf_file <- system.file("extdata", "gl_chr1.vcf", package="VariantAnnotation")
+reference_genome <-  "hg19"
+```
+
+run the command and request for the graph if desidered
+```{r}
+MutationCount(vcf_file,reference_genome,graph = FALSE)
+```
+
+
+```{r}
+sessionInfo()
+```

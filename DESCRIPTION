@@ -1,0 +1,19 @@
+Package: SNVMutations
+Type: Package
+Title: What the package does (short line)
+Version: 0.99.1
+Date: 2023-02-26
+Authors@R: 
+    person("Michele", "Rossi", role = c("aut", "cre") , email= "Michele.rossi9@mail.polimi.it")
+Description: Reads .vcf file, the reference genome and a desired length and returns a vector of SNVs in the format UP REF>ALT DOWN. The package also returns a count table of mutation. 
+License: GPL-2
+Imports: VariantAnnotation, BSgenome, GenomicRanges, ggplot2, Biostrings
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+biocViews: SNP, VariantAnnotation
+VignetteBuilder: knitr
