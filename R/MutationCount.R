@@ -1,27 +1,21 @@
-#' Reads .vcf file, the reference genome and a desired length
-#' and returns a vector of SNVs
+#' This function reads a .vcf file and, given a reference genome returns 
+#' a count table and a graph of SNV in the format UP REF>ALT DOWN
 #'
-#' This function reads a .vcf file and, given a reference genome and a length 
-#'  returns a vector of SNVs in the format UP REF>ALT DOWN
-#'
-#' @usage MutationType(vcf_file,reference_genome,context_length)
-#' @param MutationType a  VCF file
+#' @usage MutationCount(vcf_file,reference_genome,graph)
+#' @param vcf_file a  VCF file
 #' @param reference_genome the reference genome
-#' @param context_length the length of the region considered
-#' @return Vector of SNVs 
+#' @param graph a boolean, if TRUE returns a graph
+#' @return Distance in miles
 #' @author Michele Rossi \cr Politecnico di Milano\cr Maintainer: Michele
 #' Rossi\cr E-Mail: <michele9.rossi@@polimi.it>
 #' @import VariantAnnotation
 #' @import BSgenome
-#' @import GenomicRanges
-#' @import Biostrings
+#' @import ggplot2
 #' @examples
-#' ex_vcf_file = system.file("extdata", "gl_chr1.vcf", package="VariantAnnotation")
-#' MutationType(ex_vcf_file, "hg19", 3)
+#' ex_vcf_file = system.file("extdata", "chr22.vcf.gz", package="VariantAnnotation"))
+#' MutationCount(ex_vcf_file, "hg19",graph = TRUE)
 #' 
-#'
 #' @export
-
 
 MutationCount <-
 function(vcf_file,reference_genome,graph = FALSE){
