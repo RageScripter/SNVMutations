@@ -3,7 +3,7 @@ Bioconductor-compliant package that provides functions to determine the mutation
 
 
 ## Inputs
-- set of SNP in VCF format
+- set of SNV in VCF format
 - a reference genome
 - the parameter “context_length” (length of the context of the mutation uspstream[SNV]downstream) 
 
